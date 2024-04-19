@@ -1,17 +1,19 @@
 const currentCards = [0, 1, 2];
 
-fetch("monkeys.json")
-    .then(response => response.json())
-    .then(Data => createCards(Data))
-
-
 const previousBtn = document.querySelector(".previous-btn");
 const nextBtn = document.querySelector(".next-btn");
 previousBtn.addEventListener("click", previousCards);
 nextBtn.addEventListener("click", nextCards);
 
+fetchAndCreate();
 
+// alle functies
 
+function fetchAndCreate() {
+    fetch("monkeys.json")
+    .then(response => response.json())
+    .then(Data => createCards(Data))
+}
 
 function createCards(monkeyData) {
     const container = document.querySelector(".container");
@@ -32,16 +34,12 @@ function previousCards() {
     for (let i = 0; i < currentCards.length; i++) {
         currentCards[i]--;
     }
-    fetch("monkeys.json")
-        .then(response => response.json())
-        .then(Data => createCards(Data))
+    fetchAndCreate();
 }
 
 function nextCards() {
     for (let i = 0; i < currentCards.length; i++) {
         currentCards[i]++;
     }
-    fetch("monkeys.json")
-        .then(response => response.json())
-        .then(Data => createCards(Data))
+    fetchAndCreate();
 }
