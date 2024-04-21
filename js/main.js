@@ -32,14 +32,14 @@ function createCards(monkeyData) {
 
 function previousCards() {
     for (let i = 0; i < currentCards.length; i++) {
-        currentCards[i]--;
+        currentCards[i] -= 3;
     }
     fetchAndCreate();
 }
 
 function nextCards() {
     for (let i = 0; i < currentCards.length; i++) {
-        currentCards[i]++;
+        currentCards[i] += 3;
     }
     fetchAndCreate();
 }
@@ -56,22 +56,23 @@ function showResults() {
         }
         console.log(currentCards);
         for (let m = 0; m < Data.length; m++) {
-            let dataLetters;
+            let dataLetters = "";
             for (let i = 0; i < searchInput.value.length; i++) {
-                console.log(Data[m].Name);
-                console.log(Data[m].Name[i]);
                 dataLetters += Data[m].Name[i];
             }
-            console.log(dataLetters);
-            if (dataLetters == searchInput.value) {
-                alert("foundtem");
+            if (dataLetters == searchInput.value && searchInput.value != "") {
                 currentCards.push(m);
             }
         }
-        if (currentCards.length == 0) {
+        console.log("b2: " + currentCards);
+        console.log("b33: " + currentCards.length);
+        console.log("b3: " + searchInput.value.length);
+        if (currentCards.length == 0 && searchInput.value.length > 0) {
             currentCards.push(0);
             currentCards.push(1);
             currentCards.push(2);
+        }
+        if (currentCards.length == 0 && searchInput.value.length != 0) {
         }
         fetchAndCreate();
     })
