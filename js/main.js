@@ -60,19 +60,17 @@ function showResults() {
             for (let i = 0; i < searchInput.value.length; i++) {
                 dataLetters += Data[m].Name[i];
             }
-            if (dataLetters == searchInput.value && searchInput.value != "") {
+            if (dataLetters.toUpperCase() == searchInput.value.toUpperCase() && searchInput.value != "") {
                 currentCards.push(m);
             }
         }
         console.log("b2: " + currentCards);
         console.log("b33: " + currentCards.length);
         console.log("b3: " + searchInput.value.length);
-        if (currentCards.length == 0 && searchInput.value.length > 0) {
+        if (currentCards.length == 0 && searchInput.value.length == 0) {
             currentCards.push(0);
             currentCards.push(1);
             currentCards.push(2);
-        }
-        if (currentCards.length == 0 && searchInput.value.length != 0) {
         }
         fetchAndCreate();
     })
