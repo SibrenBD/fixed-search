@@ -1,4 +1,7 @@
 const currentCards = [0, 1, 2];
+let nummer = 0;
+
+nummer++;
 
 const previousBtn = document.querySelector(".previous-btn");
 const nextBtn = document.querySelector(".next-btn");
@@ -31,6 +34,9 @@ function createCards(Data) {
 }
 
 function previousCards() {
+    while (currentCards.length > 3) {
+        currentCards.pop();
+    }
     for (let i = 0; i < currentCards.length; i++) {
         currentCards[i] -= 3;
     }
@@ -38,6 +44,9 @@ function previousCards() {
 }
 
 function nextCards() {
+    while (currentCards.length > 3) {
+        currentCards.pop();
+    }
     for (let i = 0; i < currentCards.length; i++) {
         currentCards[i] += 3;
     }
