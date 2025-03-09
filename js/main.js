@@ -3,6 +3,8 @@ let nummer = 0;
 
 nummer++;
 
+let jsonFile = "monkeys.json";
+
 const previousBtn = document.querySelector(".previous-btn");
 const nextBtn = document.querySelector(".next-btn");
 previousBtn.addEventListener("click", previousCards);
@@ -13,7 +15,7 @@ fetchAndCreate();
 // alle functies
 
 function fetchAndCreate() {
-    fetch("champs.json")
+    fetch(`${jsonFile}`)
     .then(response => response.json())
     .then(Data => createCards(Data))
 }
@@ -25,9 +27,9 @@ function createCards(Data) {
         container.innerHTML +=
             `
         <div class="card">
-            <h2>${Data[currentCards[i]].name}</h2>
-            <img src="${Data[currentCards[i]].icon}" alt="${Data[currentCards[i]].name}">
-            <h2>${Data[currentCards[i]].stats.hp}</h2>
+            <h2>${Data[currentCards[i]].Name}</h2>
+            <img src="${Data[currentCards[i]].Image}" alt="${Data[currentCards[i]].name}">
+            <h2>${Data[currentCards[i]].Details}</h2>
         </div>
         `
     }
@@ -56,7 +58,7 @@ function nextCards() {
 // epic fixed search :)
 
 function showResults() {
-    fetch("champs.json")
+    fetch(`${jsonFile}`)
     .then(response => response.json())
     .then(Data => {
         const searchInput = document.querySelector(".search");
@@ -67,7 +69,7 @@ function showResults() {
         for (let m = 0; m < Data.length; m++) {
             let dataLetters = "";
             for (let i = 0; i < searchInput.value.length; i++) {
-                dataLetters += Data[m].name[i];
+                dataLetters += Data[m].Name[i];
             }
             if (dataLetters.toUpperCase() == searchInput.value.toUpperCase() && searchInput.value != "") {
                 currentCards.push(m);
